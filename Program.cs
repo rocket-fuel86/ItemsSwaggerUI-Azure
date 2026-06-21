@@ -1,4 +1,4 @@
-using HW1.Models;
+using HW1.Services;
 
 namespace HW1
 {
@@ -8,7 +8,8 @@ namespace HW1
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddSingleton<ItemStore>();
+            builder.Services.AddSingleton<ItemService>();
+            builder.Services.AddSingleton<BlobService>();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
