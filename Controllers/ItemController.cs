@@ -23,7 +23,7 @@ namespace HW1.Controllers
         [HttpGet("{id:int}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var item = _store.GetById(id);
+            var item = await _store.GetById(id);
             return item is null ? NotFound(new { message = $"Item {id} not found." }) : Ok(item);
         }
 

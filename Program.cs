@@ -1,4 +1,7 @@
+using HW1.Models;
 using HW1.Services;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace HW1
 {
@@ -6,7 +9,10 @@ namespace HW1
     {
         public static void Main(string[] args)
         {
+
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("AzureSql")));
 
             builder.Services.AddSingleton<ItemService>();
             builder.Services.AddSingleton<BlobService>();
