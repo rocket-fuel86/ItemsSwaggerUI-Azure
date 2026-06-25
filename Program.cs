@@ -1,7 +1,6 @@
 using HW1.Models;
 using HW1.Services;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.SqlServer;
 
 namespace HW1
 {
@@ -18,17 +17,16 @@ namespace HW1
             builder.Services.AddSingleton<BlobService>();
 
             builder.Services.AddControllers();
+
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddHttpClient<TranslateService>();
 
             var app = builder.Build();
 
             app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Items API v1");
-                c.RoutePrefix = "swagger";
-            });
+            app.UseSwaggerUI();
 
             app.UseAuthorization();
 
